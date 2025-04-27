@@ -85,7 +85,7 @@ def available_times(request):
     bay_required = False
 
     for job in job_names:
-        if job not in JOB_INFO:
+        if job not in JOBS:
             total_periods += 4
             bay_required = True
             continue
@@ -145,6 +145,7 @@ def available_times(request):
 
 @method_decorator(csrf_exempt, name='dispatch')
 class JobViewSet(viewsets.ModelViewSet):
+    queryset = Job.objects.all()
     serializer_class = JobSerializer
     permission_classes = [AllowAny]
 

@@ -27,7 +27,14 @@ class BookingSerializer(serializers.ModelSerializer):
         return booking
     
 class JobSerializer(serializers.ModelSerializer):
-    booking = BookingSerializer(required=False, read_only=True)
+    booking = BookingSerializer(read_only=True)
+    booking_id = serializers.PrimaryKeyRelatedField(
+        queryset=Booking.objects.all(), 
+        source='booking', 
+        write_only=True,
+        required=False
+    )
+
     class Meta:
         model = Job
-        fields = ['bay', 'booking', 'start_time', 'end_time']
+        fields = ['bay', 'booking', 'booking_id', 'start_time', 'end_time']

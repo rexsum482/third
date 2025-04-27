@@ -17,9 +17,9 @@ class Bay(models.Model):
         else:
             return f"No Store defined: Bay #{self.number}"
 
-    def save(self):
+    def save(self, *args, **kwargs):
         if self.shop:
-            bays = self.objects.filter(shop=self.shop)
+            bays = Bay.objects.filter(shop=self.shop)
             bay_numbers = []
             for bay in bays:
                 if int(bay.number) == int(self.number):
@@ -27,7 +27,8 @@ class Bay(models.Model):
                 bay_numbers.append(bay.number)
             if int(self.number) in bay_numbers:
                 raise Exception
-        return super().save()
+        return super().save(*args, **kwargs)
+
 
 WORK_START = time(8, 0)
 WORK_END = time(18, 0)

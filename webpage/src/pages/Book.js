@@ -52,7 +52,7 @@ const Book = () => {
   };
 
   const onSkip = () => {
-    setStep(5);
+    setStep(3);
   };
 
   const handleCaptcha = (value) => {
@@ -123,7 +123,7 @@ const Book = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           bay: bayNumber,
-          booking: booking.id,
+          booking_id: booking.id,
           start_time: selectedTime.available_time,
           end_time: selectedTime.end_time
         }),
@@ -161,7 +161,6 @@ const Book = () => {
           setCategory(cat);
           setStep(2);
         }}
-        onContinue={() => setStep(5)}
       />
     )}
     {step === 2 && category && (
@@ -176,7 +175,7 @@ const Book = () => {
         onContinue={() => setStep(5)}
       />
     )}
-    {step === 5 && (
+    {step === 3 && (
       <InfoForm
         details={details}
         files={files}
@@ -185,21 +184,22 @@ const Book = () => {
         addAnotherConcern={addAnotherConcern}
       />
     )}
-    {step === 6 && (
+    {step === 4 && (
       <CustomerForm
         customerInfo={customerInfo}
         handleCustomerChange={handleCustomerChange}
       />
     )}
-    {step === 7 && (
+    {step === 5 && (
       <AvailableTimeSelector
         jobs={selectedConcerns}
         selectedTime={selectedTime}
         setSelectedTime={setSelectedTime}
       />
     )}
-    {step === 8 && (
+    {step === 6 && (
       <CaptchaAndSubmit
+        captcha={captchaToken}
         setCaptchaToken={handleCaptcha}
         handleSubmit={handleSubmit}
       />
@@ -226,8 +226,8 @@ const Book = () => {
       </div>
     </div>
   )}
-  {step >= 5 && step < 8 && (
-    <div className="fixed-button right">
+  {step >= 2 && step < 6 && (
+    <div className="fixed-button right" style={{ marginTop: '1rem' }}>
       <button
         onClick={() => setStep(step + 1)}
         className="circle-button green"

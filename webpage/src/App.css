@@ -525,7 +525,7 @@ code {
   }
   
   .services-card {
-    background: white;
+    background: rgb(172, 172, 172);
     padding: 2rem;
     display: flex;
     flex-direction: column;

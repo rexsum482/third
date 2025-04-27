@@ -7,7 +7,7 @@ import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import MenuBar from "./components/MenuBar";
 import Services from "./pages/Services";
-import Contact from "./pages/Contact";
+import Reviews from "./pages/Reviews";
 import Jobs from "./pages/Jobs";
 
 function App() {
@@ -92,8 +92,8 @@ function AppContent({ isAuthenticated, isAdmin }) {
     active = 'home';
   } else if (location.pathname.startsWith('/services')) {
     active = 'services';
-  } else if (location.pathname.startsWith('/contact')) {
-    active = 'contact';
+  } else if (location.pathname.startsWith('/reviews')) {
+    active = 'reviews';
   } else if (location.pathname.startsWith('/jobs')) {
     active = 'jobs';
   } else if (location.pathname.startsWith('/book')) {
@@ -110,7 +110,7 @@ function AppContent({ isAuthenticated, isAdmin }) {
           <Route path="/login" element={isAuthenticated ? <Home /> : <Login />} />
           <Route path="/home" element={<Home />} />
           <Route path="/services" element={<Services />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route path="/reviews" element={<Reviews />} />
           <Route path="/jobs" element={isAdmin ? <Jobs /> : <Home />} />
         </Routes>
       </div>

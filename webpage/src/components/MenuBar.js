@@ -57,6 +57,15 @@ const MenuBar = ({ isAuthenticated, isAdmin, active }) => {
                             Services
                         </a>
                     </li>
+
+                    <li>
+                        <a 
+                            href="/reviews" 
+                            className={active === 'reviews' ? "menu-link active" : "menu-link"}
+                        >
+                            Reviews
+                        </a>
+                    </li>
                     {isAdmin ? (
                         <li>
                             <a 
@@ -69,21 +78,13 @@ const MenuBar = ({ isAuthenticated, isAdmin, active }) => {
                     ) : (
                         <li>
                             <a 
-                                href="/contact" 
-                                className={active === 'contact' ? "menu-link active" : "menu-link"}
+                                href="/book" 
+                                className={active === 'book' ? "menu-link active" : "menu-link"}
                             >
-                                Contact
+                                Schedule Service
                             </a>
                         </li>
                     )}
-                    <li>
-                        <a 
-                            href="/book" 
-                            className={active === 'book' ? "menu-link active" : "menu-link"}
-                        >
-                            Schedule Service
-                        </a>
-                    </li>
                 </ul>
                 </div>
             </div>

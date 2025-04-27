@@ -1,5 +1,5 @@
 from rest_framework import viewsets, status
-from .serializers import UserSerializer
+from .serializers import UserSerializer, PhoneNumberSerializer, PhoneNumber
 from django.contrib.auth import get_user_model
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
@@ -75,3 +75,15 @@ class UserViewSet(viewsets.ModelViewSet):
             return Response(status=HTTP_205_RESET_CONTENT)
         
         return Response(status=HTTP_403_FORBIDDEN)
+    
+class PhoneNumberViewSet(viewsets.ModelViewSet):
+    queryset = PhoneNumber.objects.all()
+    serializer_class = PhoneNumberSerializer
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        if self.request.user.is_authenticated:
+            return PhoneNumber.objects.filter(user=self.request.user)
+        else:
+            return PhoneNumber.objects.none()

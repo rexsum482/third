@@ -4,9 +4,9 @@ from django.conf import settings
 from django.conf.urls.static import static
 from rest_framework.routers import DefaultRouter
 from services.views import ServiceViewSet
-from users.views import UserViewSet
+from users.views import UserViewSet, PhoneNumberViewSet
 from rest_framework.authtoken.views import ObtainAuthToken
-from .views import FrontendAppView, server_time #, EventViewSet
+from .views import FrontendAppView, server_time
 from vehicles.views import VehicleViewSet
 from bookings.views import BayViewSet, BookingViewSet, generate_presigned_url, available_times, get_next_available_time, JobViewSet
 from reviews.views import ReviewViewSet
@@ -22,6 +22,7 @@ router.register('reviews', ReviewViewSet, basename='review')
 router.register('jobs', JobViewSet, basename='job')
 router.register('bays', BayViewSet, basename='bay')
 router.register('shops', ShopViewSet, basename='shop')
+router.register('phones', PhoneNumberViewSet, basename='phone')
 router.register('mailing-list', MailingListViewSet, basename='mailinglist')
 
 

@@ -6,7 +6,7 @@ User = get_user_model()
 class PhoneNumberSerializer(serializers.ModelSerializer):
     class Meta:
         model = PhoneNumber
-        fields = ["user", "number"]
+        fields = ["id", "user", "number"]
         extra_kwargs = {
             'user': {'write_only': True}
         }

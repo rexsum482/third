@@ -70,7 +70,7 @@ export default function Home() {
             <p className="address">
               8961 3rd Street<br />Frisco, TX 75033
             </p>
-            <p className="phone">📞 972-335-1153</p>
+            <a href="tel: +19723351153" className="phone">📞 972-335-1153</a>
             <h2 className="subheading">Business Hours:</h2>
 
             <div className="business-hours">

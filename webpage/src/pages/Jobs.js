@@ -56,21 +56,53 @@ const Jobs = () => {
     }
   };
 
+  const deleteJob = async (id) => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this block?");
+    if (!confirmDelete) return;
+  
+    const res = await fetch(`http://${SITE}/api/jobs/${id}/`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Token ${localStorage.getItem('token')}`,
+      },
+    });
+  
+    if (res.ok) {
+      fetchJobs();
+    } else {
+      console.error('Error deleting block');
+    }
+  };
+
   return (
     <div className="admin-schedule">
       <div className="admin-schedule__header">
         <div>
-        <h1 className="admin-schedule__title">Daily Schedule</h1>
-        <DatePicker selected={selectedDate} onChange={(date) => setSelectedDate(date)} inline />
+          <h1 className="admin-schedule__title">Daily Schedule</h1>
+          <DatePicker selected={selectedDate} onChange={(date) => setSelectedDate(date)} inline />
         </div>
+          {/* Blocked Bays List */}
+          <div>
+          <h2>Blocked Bays</h2>
+          <div className="blocked-bays">
+            {jobs.filter(job => !job.booking).map((job, idx) => (
+              <div key={idx} className="blocked-bay">
+                <p>Bay {job.bay} | {new Date(job.start_time).toLocaleTimeString()} - {new Date(job.end_time).toLocaleTimeString()}</p>
+                <button className="btn btn-danger" onClick={() => deleteJob(job.id)}>Delete</button>
+              </div>
+            ))}
+            {jobs.filter(job => !job.booking).length === 0 && <p>No blocked bays today.</p>}
+        </div>
+
         <button className="btn btn-primary" onClick={() => setIsModalOpen(true)}>Block Bay</button>
+        </div>
       </div>
 
       {loading ? (
         <div className="spinner"></div>
       ) : (
         <div className="admin-schedule__jobs">
-          {jobs.map((job, idx) => {job.booking && (
+         {jobs.filter(job => job.booking).map((job, idx) => (
             <div className="card" key={idx}>
               <div className="card-content">
                 <h2>Bay {job.bay}</h2>
@@ -84,7 +116,7 @@ const Jobs = () => {
                 )}
               </div>
             </div>
-          )})}
+          ))}
         </div>
       )}
 

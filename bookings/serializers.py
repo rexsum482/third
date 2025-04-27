@@ -37,4 +37,4 @@ class JobSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Job
-        fields = ['bay', 'booking', 'booking_id', 'start_time', 'end_time']
+        fields = ['id', 'bay', 'booking', 'booking_id', 'start_time', 'end_time']

@@ -27,7 +27,7 @@ const MenuBar = ({ isAuthenticated, isAdmin, active }) => {
                     {isMobile ? (<span></span>) : (<span className="logo-text">3rd Street Garage</span>)}
                 </a>
                 <div className="navbar-links">
-                    <a href="tel:9723351153" className="navbar-phone">(972) 335-1153</a>
+                    <a href="tel:9723351153" className="navbar-phone">📞 (972) 335-1153</a>
                     {isAuthenticated ? (
                         <span className="navbar-login" onClick={handleLogout}>Logout</span>
                     ) : (

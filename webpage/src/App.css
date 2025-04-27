@@ -293,7 +293,6 @@ code {
   
   /* Card styling */
 .card {
-    background-color: #ffffff;
     padding: 2rem;
     border-radius: 0.5rem;
     border: 1px solid #e5e7eb;
@@ -494,9 +493,9 @@ code {
 .services-background {
     position: relative;
     min-height: 100vh;
-  }
+}
   
-  .services-container {
+.services-container {
     position: relative;
     z-index: 1;
     padding-top: 2.5rem;
@@ -504,27 +503,27 @@ code {
     margin: 0 auto;
     padding-left: 1rem;
     padding-right: 1rem;
-  }
+}
   
-  .services-title {
+.services-title {
     color: white;
     font-weight: bold;
     text-align: center;
     margin-bottom: 2rem;
     font-size: 2rem;
-  }
+}
   
-  .services-grid {
+.services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
-  }
+}
   
-  .services-grid-item {
+.services-grid-item {
     width: 100%;
-  }
+}
   
-  .services-card {
+.services-card {
     background: rgb(172, 172, 172);
     padding: 2rem;
     display: flex;
@@ -533,22 +532,82 @@ code {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
     border-radius: 8px;
     height: 100%;
-  }
+}
   
-  .services-image {
+.services-image {
     max-width: 100%;
     height: auto;
     margin-bottom: 1rem;
-  }
+}
   
-  .services-name {
+.services-name {
     font-weight: bold;
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
-  }
+}
   
-  .services-description {
+.services-description {
     color: #303030; /* Text secondary color */
     text-align: center;
     font-size: 1.25rem;
+}
+.booking-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    align-items: center;
+    justify-content: center;
+}
+  
+.booking-container.dark {
+    background: #1f2937;
+    border-color: #374151;
+}
+  
+.fixed-button {
+    position: relative;
+    bottom: 1rem;
+}
+  
+.fixed-button.left {
+    left: 1rem;
+}
+  
+.fixed-button.right {
+    right: 1rem;
+}
+  
+.circle-button {
+    padding: 1rem;
+    border-radius: 9999px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: background 0.3s;
+}
+  
+.circle-button.blue {
+    background-color: #3b82f6;
+}
+  
+.circle-button.blue:hover {
+    background-color: #2563eb;
+}
+  
+.circle-button.green {
+    background-color: #10b981;
+}
+  
+.circle-button.green:hover {
+    background-color: #059669;
+}
+.concern-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin: 1rem 0;
   }

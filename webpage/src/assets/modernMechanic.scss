@@ -1,0 +1,44 @@
+$highlight: #cafad3;
+$green: #02610a;
+$dark-green: #0c3710;
+$accent-highlight: #b3b9d3;
+$accent: #939393;
+$accent-shadow: #1d2127;
+$shadow: rgba(0, 0, 0, 0.2);
+$light-bg: #cfe6e7;
+$dark-bg: #223837;
+$contrast: #fefefe;
+
+.modern-mechanic {
+  background-color: $light-bg;
+  color: $accent-shadow;
+
+  header, footer {
+    background-color: $dark-bg;
+    color: $highlight;
+  }
+
+  .card {
+    background: white;
+    border: 1px solid $accent;
+    box-shadow: 0 2px 4px $shadow;
+    border-radius: 0.5rem;
+    padding: 1rem;
+  }
+
+  .button {
+    background-color: $green;
+    color: $highlight;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.375rem;
+
+    &:hover {
+      background-color: $dark-green;
+    }
+  }
+
+  h1, h2, h3 {
+    color: $accent-shadow;
+  }
+}

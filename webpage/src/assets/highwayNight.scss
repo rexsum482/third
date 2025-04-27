@@ -1,0 +1,407 @@
+// Theme 4 – Highway Night (Primary Theme)
+$highlight: #cafad3;
+$green: #02610a;
+$dark-green: #0c3710;
+$accent-highlight: #b3b9d3;
+$accent: #939393;
+$accent-shadow: #1d2127;
+$shadow: rgba(0, 0, 0, 0.2);
+$light-bg: #cfe6e7;
+$dark-bg: #223837;
+$neon-red: #FF6161;
+
+.highway-night {
+  background-color: $dark-green;
+  color: $accent-highlight;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1rem;
+
+  header, footer {
+    background-color: $accent-shadow;
+    color: $highlight;
+    padding: 1.5rem;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  h1 {
+    font-size: 2.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  p, label, input, textarea, select, li, td, th {
+    font-size: 1rem;
+  }
+
+  .card {
+    background: $accent-shadow;
+    color: $accent-highlight;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 6px $shadow;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+  }
+
+  .button {
+    background-color: $green;
+    color: white;
+    box-shadow: 0 0 8px $highlight;
+    padding: 0.5rem 1.2rem;
+    border-radius: 0.375rem;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    font-size: 1.125rem;
+    font-weight: 600;
+
+    &:hover {
+      background-color: $dark-green;
+    }
+  }
+
+  .form-group {
+    margin-bottom: 1rem;
+
+    label {
+      display: block;
+      margin-bottom: 0.25rem;
+      color: $accent-highlight;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid $accent;
+      border-radius: 0.375rem;
+      background-color: $dark-bg;
+      color: white;
+
+      &:focus {
+        border-color: $highlight;
+        outline: none;
+        box-shadow: 0 0 5px $highlight;
+      }
+    }
+  }
+
+  .nav {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    background: $accent-shadow;
+    padding: 1rem;
+    font-size: 1.125rem;
+
+    a {
+      color: $highlight;
+      text-decoration: none;
+      font-weight: bold;
+
+      &:hover {
+        color: $neon-red;
+      }
+    }
+  }
+
+  .badge {
+    display: inline-block;
+    background-color: $neon-red;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    font-weight: bold;
+  }
+
+  .list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid $accent;
+      color: $accent-highlight;
+    }
+  }
+
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    font-size: 1rem;
+
+    th,
+    td {
+      border: 1px solid $accent;
+      padding: 0.75rem;
+      text-align: left;
+      color: $accent-highlight;
+    }
+
+    th {
+      background-color: $accent-shadow;
+    }
+  }
+  .services-page {
+    background-color: $green;
+    color: white;
+    min-height: 100vh;
+    position: relative;
+    padding: 3rem 1rem;
+  }
+  
+  .services-bg {
+    position: absolute;
+    inset: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.5;
+    z-index: 0;
+  }
+  
+  .services-content {
+    position: relative;
+    z-index: 10;
+    max-width: 1200px;
+    margin: auto;
+    background: white;
+    color: $dark-bg;
+    padding: 2rem;
+    border-radius: 1rem;
+  }
+  
+  .services-heading {
+    text-align: center;
+    font-size: 2.75rem;
+    font-weight: bold;
+    background: black;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    margin-bottom: 3rem;
+  }
+  
+  .service-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 2rem;
+  
+    @media (min-width: 1024px) {
+      flex-direction: row;
+      align-items: center;
+    }
+  
+    img {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 0.5rem;
+      object-fit: cover;
+      box-shadow: 0 2px 8px $shadow;
+    }
+  
+    .service-details {
+      flex: 1;
+  
+      h2 {
+        font-size: 2rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+  
+      p {
+        font-size: 1.125rem;
+        color: $accent-shadow;
+        line-height: 1.6;
+      }
+    }
+  }
+  .book-container {
+    background-color: #02610a;
+    min-height: 100vh;
+    max-width: 720px;
+    margin: 0 auto;
+    color: white;
+    padding: 1rem;
+    h2 {
+      font-size: 2rem;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+  }
+  
+  .book-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .book-btn {
+    height: 96px;
+    padding: 0.5rem;
+    text-align: center;
+    font-size: 1.25rem;
+    border-radius: 0.5rem;
+    background-color: #1d2127;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  
+    &.selected {
+      background-color: #0c3710;
+    }
+  
+    &:hover {
+      background-color: #223837;
+    }
+  }
+  
+  .book-subsection {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  
+    textarea {
+      padding: 0.5rem;
+      background-color: #0c3710;
+      border: 1px solid #223837;
+      border-radius: 0.5rem;
+      color: white;
+    }
+  
+    input[type="file"] {
+      color: white;
+    }
+  }
+  
+  input,
+  textarea {
+    width: 100%;
+    padding: 0.5rem;
+    background-color: #0c3710;
+    border: 1px solid #223837;
+    border-radius: 0.5rem;
+    color: white;
+  }
+  .create-review,
+  .reviews {
+    background-color: #02610a;
+    color: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    max-width: 600px;
+    margin: 2rem auto;
+  }
+  
+  .create-review h2,
+  .reviews h2 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  input,
+  textarea {
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    background-color: #1d2127;
+    color: white;
+    border: none;
+  }
+  
+  button {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #1d71a2;
+    color: white;
+    font-weight: bold;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    border: none;
+  }
+  
+  button:hover {
+    background-color: #155b84;
+  }
+  
+  .star {
+    font-size: 1.75rem;
+    cursor: pointer;
+    color: #555;
+    transition: transform 0.2s;
+    display: inline-block;
+  }
+  
+  .star.filled {
+    color: #ffd700;
+  }
+  
+  .stars {
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+  
+  .review-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1rem;
+  }
+  
+  .review-item {
+    background-color: #0c3710;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  
+  .review-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.25rem;
+  }
+  
+  .review-name {
+    font-weight: bold;
+  }
+  
+  .review-rating {
+    color: gold;
+  }
+  
+  .review-text {
+    font-size: 1rem;
+  }
+  
+  .review-nav {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .review-nav button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+}

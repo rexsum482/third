@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" width="1200" height="400">
+  <g transform="rotate(-8,600,200)">
+    <!-- Outer white outline -->
+    <rect x="30" y="80" width="1140" height="240" rx="20" ry="20" fill="white"/>
+    <!-- Inner green background with black stroke -->
+    <rect x="40" y="90" width="1120" height="220" rx="15" ry="15" fill="#0c775e" stroke="black" stroke-width="6"/>
+    <!-- "3" large and bold -->
+    <text x="100" y="240" font-family="Roboto Bold, sans-serif" font-size="120" fill="white">3</text>
+    <!-- "rd" smaller, bold, and raised -->
+    <text x="165" y="200" font-family="Roboto Bold, sans-serif" font-size="60" fill="white">rd</text>
+    <!-- "Street Garage" large and bold -->
+    <text x="240" y="240" font-family="Roboto Bold, sans-serif" font-size="120" fill="white" letter-spacing="5">
+      Street Garage
+    </text>
+  </g>
+</svg>

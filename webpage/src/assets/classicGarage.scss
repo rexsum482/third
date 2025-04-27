@@ -1,0 +1,46 @@
+$highlight: #cafad3;
+$green: #02610a;
+$dark-green: #0c3710;
+$accent-highlight: #b3b9d3;
+$accent: #939393;
+$accent-shadow: #1d2127;
+$shadow: rgba(0, 0, 0, 0.2);
+$light-bg: #cfe6e7;
+$dark-bg: #223837;
+$contrast: #fefefe;
+
+$garage-red: #da3b3b;
+
+.classic-garage {
+  background-color: white;
+  color: $dark-bg;
+
+  header, footer {
+    background-color: $dark-green;
+    color: $highlight;
+  }
+
+  .card {
+    background: $light-bg;
+    border: 1px solid $accent;
+    border-radius: 0.5rem;
+    padding: 1rem;
+  }
+
+  .button {
+    background-color: $green;
+    color: $highlight;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+
+    &:hover {
+      background-color: $garage-red;
+      color: white;
+    }
+  }
+
+  h1, h2, h3 {
+    color: $dark-bg;
+  }
+}

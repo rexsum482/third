@@ -17,6 +17,8 @@ from datetime import datetime, time, timedelta
 from django.utils.dateparse import parse_date
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
+from rest_framework.views import APIView
+from backend.mixins import CsrfExemptMixin, CsrfProtectMixin
 
 BUSINESS_HOURS_START = 8
 BUSINESS_HOURS_END = 18
@@ -72,76 +74,76 @@ def is_slot_available(bay_jobs, slot_block):
                 return False
     return True
 
+class AvailableTimesView(CsrfExemptMixin, APIView):
+    permission_classes = [AllowAny]  # No authentication needed
 
-@api_view(['POST'])
-@permission_classes([AllowAny])
-def available_times(request):
-    job_names = request.data.get('jobs')
+    def post(self, request, *args, **kwargs):
+        job_names = request.data.get('jobs')
 
-    if not job_names or not isinstance(job_names, list):
-        return Response({'error': 'Please provide a list of job names under "jobs"'}, status=400)
+        if not job_names or not isinstance(job_names, list):
+            return Response({'error': 'Please provide a list of job names under "jobs"'}, status=400)
 
-    total_periods = 0
-    bay_required = False
+        total_periods = 0
+        bay_required = False
 
-    for job in job_names:
-        if job not in JOBS:
-            total_periods += 4
-            bay_required = True
-            continue
-        total_periods += JOB_INFO[job]['periods']
-        if JOB_INFO[job]['bay_required']:
-            bay_required = True
-    if total_periods > 12:
-        total_periods = 12
-    if total_periods < 2:
-        total_periods = 2
-    if not bay_required:
-        soonest = now() + SLOT_DURATION * 2
-        grouped_times = defaultdict(list)
-        today = now().date()
-        business_days = get_next_business_days(today, count=7)
-        for day in business_days:
-            daily_slots = get_daily_slots(day)
-            for i in range(len(daily_slots) - total_periods + 1):
-                block = daily_slots[i:i + total_periods]
-                start_slot = block[0]
-                if start_slot < soonest:
-                    continue
-                grouped_times[str(day)].append({
-                    "available_time": block[0],
-                    "end_time": block[-1] + SLOT_DURATION,
-                    "duration": total_periods * SLOT_DURATION
-		})
-        return Response(grouped_times)
-
-    current_time = now()
-    cutoff_time = current_time + timedelta(hours=1)
-    grouped_times = defaultdict(list)
-    today = now().date()
-    business_days = get_next_business_days(today, count=7)
-
-    for bay in Bay.objects.all():
-        bay_jobs = list(Job.objects.filter(bay=bay, start_time__gte=make_aware(datetime.combine(today, time.min))))
-
-        for day in business_days:
-            daily_slots = get_daily_slots(day)
-            for i in range(len(daily_slots) - total_periods + 1):
-                block = daily_slots[i:i + total_periods]
-                start_slot = block[0]
-
-                if start_slot < cutoff_time:
-                    continue 
-
-                if is_slot_available(bay_jobs, block):
+        for job in job_names:
+            if job not in JOBS:
+                total_periods += 4
+                bay_required = True
+                continue
+            total_periods += JOB_INFO[job]['periods']
+            if JOB_INFO[job]['bay_required']:
+                bay_required = True
+        if total_periods > 12:
+            total_periods = 12
+        if total_periods < 2:
+            total_periods = 2
+        if not bay_required:
+            soonest = now() + SLOT_DURATION * 2
+            grouped_times = defaultdict(list)
+            today = now().date()
+            business_days = get_next_business_days(today, count=7)
+            for day in business_days:
+                daily_slots = get_daily_slots(day)
+                for i in range(len(daily_slots) - total_periods + 1):
+                    block = daily_slots[i:i + total_periods]
+                    start_slot = block[0]
+                    if start_slot < soonest:
+                        continue
                     grouped_times[str(day)].append({
                         "available_time": block[0],
                         "end_time": block[-1] + SLOT_DURATION,
-                        "duration": total_periods * SLOT_DURATION,
-                        "bay": bay.number,
-                    })
+                        "duration": total_periods * SLOT_DURATION
+		    })
+            return Response(grouped_times)
 
-    return Response(deduplicate_slots(grouped_times))
+        current_time = now()
+        cutoff_time = current_time + timedelta(hours=1)
+        grouped_times = defaultdict(list)
+        today = now().date()
+        business_days = get_next_business_days(today, count=7)
+
+        for bay in Bay.objects.all():
+            bay_jobs = list(Job.objects.filter(bay=bay, start_time__gte=make_aware(datetime.combine(today, time.min))))
+
+            for day in business_days:
+                daily_slots = get_daily_slots(day)
+                for i in range(len(daily_slots) - total_periods + 1):
+                    block = daily_slots[i:i + total_periods]
+                    start_slot = block[0]
+
+                    if start_slot < cutoff_time:
+                        continue 
+
+                    if is_slot_available(bay_jobs, block):
+                        grouped_times[str(day)].append({
+                            "available_time": block[0],
+                            "end_time": block[-1] + SLOT_DURATION,
+                            "duration": total_periods * SLOT_DURATION,
+                            "bay": bay.number,
+                        })
+
+        return Response(deduplicate_slots(grouped_times))
 
 @method_decorator(csrf_exempt, name='dispatch')
 class JobViewSet(viewsets.ModelViewSet):

@@ -6,9 +6,9 @@ from rest_framework.routers import DefaultRouter
 from services.views import ServiceViewSet
 from users.views import UserViewSet, PhoneNumberViewSet
 from rest_framework.authtoken.views import ObtainAuthToken
-from .views import FrontendAppView, server_time
+from .views import FrontendAppView, server_time, get_csrf_token
 from vehicles.views import VehicleViewSet
-from bookings.views import BayViewSet, BookingViewSet, generate_presigned_url, available_times, get_next_available_time, JobViewSet
+from bookings.views import BayViewSet, BookingViewSet, generate_presigned_url, AvailableTimesView, get_next_available_time, JobViewSet
 from reviews.views import ReviewViewSet
 from mailinglist.views import MailingListViewSet
 from shops.views import ShopViewSet
@@ -32,8 +32,9 @@ urlpatterns = [
     path('auth/', ObtainAuthToken.as_view(), name='get_token'),
     path('server-time/', server_time, name='server_time'),
     path('upload-url/', generate_presigned_url, name='generate_upload_url'),
-    path('available-times/', available_times, name='available_times'),
-    path('get-next-available/', get_next_available_time, name='get_next_available_time')
+    path('available-times/', AvailableTimesView.as_view(), name='available_times'),
+    path('get-next-available/', get_next_available_time, name='get_next_available_time'),
+    path('get-csrf-token/', get_csrf_token, name='get_csrf_token'),
 
 ]
 

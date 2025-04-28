@@ -7,6 +7,33 @@ const AvailableTimeSelector = ({ jobs, selectedTime, setSelectedTime }) => {
   const [dates, setDates] = useState([]);
   const [selectedDateIndex, setSelectedDateIndex] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [cookieValue, setCookieValue] = useState(null);
+
+  useEffect(() => {
+    const fetchCSRFToken = async () => {
+      try {
+        await fetch(`http://${SITE}/get-csrf-token/`, {
+          method: 'GET',
+          credentials: 'include' // <-- Correct!
+        });
+        console.log('CSRF cookie set.');
+        if (document.cookie && document.cookie !== '') {
+          const cookies = document.cookie.split(';');
+          for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, 10) === 'csrftoken=') {
+              setCookieValue(cookie.substring(10));
+              break;
+            }
+          }
+        }
+      } catch (error) {
+        console.error('Error setting CSRF cookie: ', error);
+      }
+    };
+
+    fetchCSRFToken();
+  }, []);
 
   useEffect(() => {
     const fetchTimes = async () => {

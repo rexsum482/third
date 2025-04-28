@@ -131,6 +131,25 @@ code {
     background-color: #f44336;
 }
 
+.current-status {
+  font-size: 1.75rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.current-status.open {
+  color: #cafad3; /* Soft green */
+}
+
+.current-status.closed {
+  color: #f44336; /* Red */
+}
+
+/* Adjust today's background if CLOSED */
+.business-row.today.closed {
+  background-color: rgba(244, 67, 54, 0.2); /* Red tint */
+}
+
 .floating-button {
     position: fixed;
     bottom: 1rem;
@@ -1113,4 +1132,14 @@ code {
 
 .btn-secondary:hover {
     background-color: #b91c1c;
+}
+
+.mobile-margin {
+  margin-top: 200px;
+}
+
+@media (min-width: 768px) {
+  .mobile-margin {
+    margin-top: 0px;
+  }
 }

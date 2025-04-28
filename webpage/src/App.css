@@ -79,7 +79,7 @@ code {
 
 .business-hours {
     max-width: 400px;
-    margin: 10px auto 0;
+    margin: 10px auto 0px;
     background-color: transparent;
     box-shadow: none;
 }

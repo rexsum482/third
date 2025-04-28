@@ -113,7 +113,7 @@ export default function Home() {
         </div>
       </div>
       <center>
-      <div style={{ width: '100vw', margin: 'auto', marginBottom: '20px' }}>
+      <div style={{ width: '100vw', marginBottom: '20px', marginTop: '200px' }}>
         <h2 className="heading">Where To Find Us</h2>
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3340.3860770528768!2d-96.82881782385557!3d33.15148977350956!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c3c056e738aff%3A0x796a9eaf4e0ececa!2s3rd%20Street%20Garage!5e0!3m2!1sen!2sus!4v1745785109310!5m2!1sen!2sus" width="400" height="300" style={{ justifyContent: 'center', alignItems: 'center', border: 0}} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>

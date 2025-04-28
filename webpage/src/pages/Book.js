@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import KnownIssuesForm from "../components/KnownIssuesForm";
 import ProblemSelector from "../components/ProblemSelector";
 import ProblemDetail from "../components/ProblemDetail";
@@ -26,6 +26,7 @@ const Book = () => {
   });
   const [selectedTime, setSelectedTime] = useState(null);
   const [captchaToken, setCaptchaToken] = useState(null);
+  const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
   const toggleConcern = (item) => {
@@ -142,7 +143,16 @@ const Book = () => {
       alert("An error occurred during submission.");
     }
   };
-
+  useEffect(() => {
+    const setUserPhone = () => {
+      const storedUser = JSON.parse(localStorage.getItem('user'));
+      if (storedUser && storedUser.phone_numbers && storedUser.phone_numbers.length > 0) {
+        setUser(storedUser);
+        setCustomerInfo(prev => ({ ...prev, phone: storedUser.phone_numbers[0] }));
+      }
+    };
+    setUserPhone();
+  }, []);
   return (
 <>
   <div className="booking-container">

@@ -36,8 +36,10 @@ const PhoneNumberEditor = ({ phoneNumbers, setPhoneNumbers, token }) => {
   };
 
   return (
-    <div className="card profile-section">
+    <><div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
       <h2 className="profile-section-title">Phone Numbers</h2>
+      <h2 className="profile-section-title" onClick={handleAddNumber} style={{ cursor: 'pointer' }}>➕</h2>
+      </div>
       {phoneNumbers.map((phone, index) => (
         <div key={index} className="phone-input-row">
           <input
@@ -51,14 +53,11 @@ const PhoneNumberEditor = ({ phoneNumbers, setPhoneNumbers, token }) => {
             className="btn-secondary"
             onClick={() => handleRemoveNumber(index)}
           >
-            Delete
+            🗑️
           </button>
         </div>
       ))}
-      <button type="button" className="btn-primary mt-1" onClick={handleAddNumber}>
-        Add Phone Number
-      </button>
-    </div>
+      </>
   );
 };
 

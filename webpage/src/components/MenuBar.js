@@ -2,6 +2,7 @@ import React, { useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import Logo from '../assets/Logo2.png';
 import Sign from '../assets/thirdstreet.svg';
+import Avatar from '../assets/avatar.svg';
 
 const MenuBar = ({ isAuthenticated, isAdmin, active }) => {
     const navigate = useNavigate();
@@ -29,7 +30,10 @@ const MenuBar = ({ isAuthenticated, isAdmin, active }) => {
                 <div className="navbar-links">
                     <a href="tel:9723351153" className="navbar-phone">📞 (972) 335-1153</a>
                     {isAuthenticated ? (
+                        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
                         <span className="navbar-login" onClick={handleLogout}>Logout</span>
+                        <a href="/profile"><img src={Avatar} height='32px' width='auto' /></a>
+                        </div>
                     ) : (
                         <a href="/login" className="navbar-login">Login</a>
                     )}
@@ -81,7 +85,7 @@ const MenuBar = ({ isAuthenticated, isAdmin, active }) => {
                                 href="/book" 
                                 className={active === 'book' ? "menu-link active" : "menu-link"}
                             >
-                                Schedule Service
+                                Schedule
                             </a>
                         </li>
                     )}

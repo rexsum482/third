@@ -14,7 +14,7 @@ const Reviews = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const page = parseInt(searchParams.get("page")) || 1;
-  const url = `http://${SITE}/api/reviews/?page=${page}`;
+  const url = `https://${SITE}/api/reviews/?page=${page}`;
 
   const fetchReviews = async (fetchUrl) => {
     setLoading(true);

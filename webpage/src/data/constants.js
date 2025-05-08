@@ -1,2 +1,2 @@
 // export const SITE = '192.168.1.75:8000';
-export const SITE = '18.191.239.250';
+export const SITE = 'thirdstreetgarage.com';

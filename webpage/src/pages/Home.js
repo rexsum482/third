@@ -13,7 +13,7 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    fetch(`http://${SITE}/server-time/`)
+    fetch(`https://${SITE}/server-time/`)
       .then((res) => res.json())
       .then((data) => {
         setServerTime(new Date(data.server_time));

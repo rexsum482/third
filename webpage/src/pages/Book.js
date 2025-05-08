@@ -66,7 +66,7 @@ const Book = () => {
     try {
       for (const fileList of Object.values(files)) {
         for (const file of fileList) {
-          const presignRes = await fetch(`http://${SITE}/upload-url/`, {
+          const presignRes = await fetch(`https://${SITE}/upload-url/`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -89,7 +89,7 @@ const Book = () => {
         }
       }
 
-      const bookingRes = await fetch(`http://${SITE}/api/bookings/`, {
+      const bookingRes = await fetch(`https://${SITE}/api/bookings/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -111,7 +111,7 @@ const Book = () => {
       const booking = await bookingRes.json();
 
       for (const file_url of fileUrls) {
-        await fetch(`http://${SITE}/api/pictures/`, {
+        await fetch(`https://${SITE}/api/pictures/`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ booking: booking.id, file_url }),
@@ -119,7 +119,7 @@ const Book = () => {
       }
 
       const bayNumber = selectedTime.bays[0];
-      const bayRes = await fetch(`http://${SITE}/api/jobs/`, {
+      const bayRes = await fetch(`https://${SITE}/api/jobs/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -143,16 +143,7 @@ const Book = () => {
       alert("An error occurred during submission.");
     }
   };
-  useEffect(() => {
-    const setUserPhone = () => {
-      const storedUser = JSON.parse(localStorage.getItem('user'));
-      if (storedUser && storedUser.phone_numbers && storedUser.phone_numbers.length > 0) {
-        setUser(storedUser);
-        setCustomerInfo(prev => ({ ...prev, phone: storedUser.phone_numbers[0] }));
-      }
-    };
-    setUserPhone();
-  }, []);
+
   return (
 <>
   <div className="booking-container">

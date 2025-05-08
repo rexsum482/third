@@ -75,7 +75,7 @@ def is_slot_available(bay_jobs, slot_block):
     return True
 
 class AvailableTimesView(CsrfExemptMixin, APIView):
-    permission_classes = [AllowAny]  # No authentication needed
+    permission_classes = [AllowAny]
 
     def post(self, request, *args, **kwargs):
         job_names = request.data.get('jobs')

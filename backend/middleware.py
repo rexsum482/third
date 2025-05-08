@@ -4,6 +4,34 @@ from django.contrib.auth import get_user_model
 from rest_framework.authtoken.models import Token
 from rest_framework.authentication import get_authorization_header
 from rest_framework.exceptions import AuthenticationFailed
+import logging
+import traceback
+
+logger = logging.getLogger(__name__)
+
+class LogPostBodyOnErrorMiddleware:
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        try:
+            request.body_data = request.body
+        except Exception:
+            request.body_data = b''
+
+        response = self.get_response(request)
+        return response
+
+    def process_exception(self, request, exception):
+        if request.method == "POST":
+            try:
+                logger.error(
+                    "POST request caused an error\nURL: %s\nBody: %s",
+                    request.build_absolute_uri(),
+                    request.body_data.decode('utf-8', errors='replace')
+                )
+            except Exception as e:
+                logger.error("Error logging POST body: %s", str(e))
 
 User = get_user_model()
 
@@ -48,11 +76,6 @@ class UserActivityLoggingMiddleware(MiddlewareMixin):
                 request.user.ip_address = ip_address
                 request.user.save()
 
-# myapp/middleware.py
-import logging
-import traceback
-
-logger = logging.getLogger(__name__)
 
 class LogExceptionsMiddleware:
     def __init__(self, get_response):

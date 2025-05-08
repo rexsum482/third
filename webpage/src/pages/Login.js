@@ -14,12 +14,13 @@ export default function Login() {
     setError('');
 
     try {
-      const response = await fetch(`http://${SITE}/auth/`, {
+      const response = await fetch(`https://${SITE}/auth/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ username, password })
+        body: JSON.stringify({ username, password }),
+	credentials: 'omit'
       });
 
       const data = await response.json();

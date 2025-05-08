@@ -16,7 +16,7 @@ else:
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '3rdstreetgarage.com', '192.168.1.75', '18.191.239.250']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '3rdstreetgarage.com', '192.168.1.75', '18.191.239.250', 'thirdstreetgarage.com']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'backend.middleware.LogPostBodyOnErrorMiddleware',
     'backend.middleware.LogExceptionsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
@@ -138,7 +139,7 @@ EMAIL_PORT = int(os.getenv('EMAIL_PORT', 587))
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('SECURE_MAIL_KEY')
 EMAIL_USE_TLS = True
-EMAIL_USE_SSL = False 
+EMAIL_USE_SSL = False
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 LOGGING = {
@@ -153,8 +154,19 @@ LOGGING = {
             'filename': '/var/log/django/errors.log',
         },
     },
+    'loggers': {
+        'django.request': {
+            'handlers': ['console', 'file'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+    },
     'root': {
         'handlers': ['console', 'file'],
-        'level': 'ERROR',
+        'level': 'INFO',
     },
 }
+
+DEFAULT_AUTHENTICATION_CLASSES = [
+    'rest_framework.authentication.TokenAuthentication',
+]

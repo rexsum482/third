@@ -15,7 +15,7 @@ const Profile = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await fetch(`http://${SITE}/api/users/me/`, {
+        const response = await fetch(`https://${SITE}/api/users/me/`, {
           headers: { 'Authorization': `Token ${token}` },
         });
         const data = await response.json();
@@ -40,7 +40,7 @@ const Profile = () => {
   
     try {
       // Update user email
-      const userUpdate = await fetch(`http://${SITE}/api/users/${user.id}/`, {
+      const userUpdate = await fetch(`https://${SITE}/api/users/${user.id}/`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -61,7 +61,7 @@ const Profile = () => {
         
         if (phone.id) {
           // Update existing phone number
-          return fetch(`http://${SITE}/api/phones/${phone.id}/`, {
+          return fetch(`https://${SITE}/api/phones/${phone.id}/`, {
             method: 'PATCH',
             headers: {
               'Content-Type': 'application/json',
@@ -71,7 +71,7 @@ const Profile = () => {
           });
         } else {
           // Create new phone number
-          return fetch(`http://${SITE}/api/phones/`, {
+          return fetch(`https://${SITE}/api/phones/`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

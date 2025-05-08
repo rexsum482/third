@@ -21,13 +21,13 @@ const Jobs = () => {
   }, [selectedDate]);
 
   const fetchJobs = async () => {
-    const res = await fetch(`http://${SITE}/api/jobs/?date=${selectedDate.toISOString().split('T')[0]}`);
+    const res = await fetch(`https://${SITE}/api/jobs/?date=${selectedDate.toISOString().split('T')[0]}`);
     const data = await res.json();
     setJobs(data);
   };
 
   const fetchBays = async () => {
-    const res = await fetch(`http://${SITE}/api/bays/`);
+    const res = await fetch(`https://${SITE}/api/bays/`);
     const data = await res.json();
     setBays(data);
   };
@@ -35,7 +35,7 @@ const Jobs = () => {
   const createBlock = async () => {
     if (!selectedBay || !startTime || !endTime) return;
 
-    const res = await fetch(`http://${SITE}/api/jobs/`, {
+    const res = await fetch(`https://${SITE}/api/jobs/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -60,7 +60,7 @@ const Jobs = () => {
     const confirmDelete = window.confirm("Are you sure you want to delete this block?");
     if (!confirmDelete) return;
   
-    const res = await fetch(`http://${SITE}/api/jobs/${id}/`, {
+    const res = await fetch(`https://${SITE}/api/jobs/${id}/`, {
       method: 'DELETE',
       headers: {
         Authorization: `Token ${localStorage.getItem('token')}`,

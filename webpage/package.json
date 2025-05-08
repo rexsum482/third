@@ -1,6 +1,6 @@
 {
-  "name": "webpage",
-  "version": "0.1.0",
+  "name": "3rd Street Garage",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "date-fns": "^4.1.0",

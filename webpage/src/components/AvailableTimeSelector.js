@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { SITE } from "../data/constants";
 import ReadableDate from "./ReadableDate";
+import backArrow from '../assets/arrow-back.svg';
+import nextArrow from '../assets/arrow-next.svg';
 
 const AvailableTimeSelector = ({ jobs, selectedTime, setSelectedTime }) => {
   const [groupedTimes, setGroupedTimes] = useState({});
@@ -12,7 +14,7 @@ const AvailableTimeSelector = ({ jobs, selectedTime, setSelectedTime }) => {
   useEffect(() => {
     const fetchCSRFToken = async () => {
       try {
-        await fetch(`http://${SITE}/get-csrf-token/`, {
+        await fetch(`https://${SITE}/get-csrf-token/`, {
           method: 'GET',
           credentials: 'include' // <-- Correct!
         });
@@ -39,12 +41,13 @@ const AvailableTimeSelector = ({ jobs, selectedTime, setSelectedTime }) => {
     const fetchTimes = async () => {
       setLoading(true);
       try {
-        const res = await fetch(`http://${SITE}/available-times/`, {
+        const res = await fetch(`https://${SITE}/available-times/`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ jobs }),
+          credentials: 'omit'
         });
         const data = await res.json();
         console.log("Response from backend:", data);
@@ -105,20 +108,21 @@ const AvailableTimeSelector = ({ jobs, selectedTime, setSelectedTime }) => {
                   onClick={handlePrevDate}
                   disabled={selectedDateIndex === 0}
                 >
-                  &larr;
+                  <img src={backArrow} height='20px' width='auto' />
                 </button>
                 <input
                   type="text"
                   value={selectedDate}
                   readOnly
                   className="date-selected"
+		  placeholder="selected time slot will show here"
                 />
                 <button
                   className="next-date"
                   onClick={handleNextDate}
                   disabled={selectedDateIndex === dates.length - 1}
                 >
-                  &rarr;
+                  <img src={nextArrow} height='20px' width='auto' />
                 </button>
               </div>
               <div>

@@ -16,7 +16,7 @@ else:
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '3rdstreetgarage.com', '192.168.1.75', '18.191.239.250', 'thirdstreetgarage.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '3rdstreetgarage.com', '192.168.1.75', '18.191.239.250', 'thirdstreetgarage.com', 'www.thirdstreetgarage.com']
 
 INSTALLED_APPS = [
     'django.contrib.admin',

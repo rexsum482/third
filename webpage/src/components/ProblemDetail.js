@@ -19,7 +19,7 @@ const warningLightIcons = {
   "Coolant": Coolant,
 };
 
-const ProblemDetail = ({
+const ProblemDetail = React.memo(function ProblemDetail({
   category,
   selectedConcerns,
   details,
@@ -28,7 +28,8 @@ const ProblemDetail = ({
   onDetailChange,
   onFileChange,
   onContinue,
-}) => (
+}) {
+  return (
   <div className="problem-detail">
     {concernOptions.Problems[category].map((subitem) => {
       const key = `${category} - ${subitem}`;
@@ -71,6 +72,6 @@ const ProblemDetail = ({
       );
     })}
   </div>
-);
+)})
 
 export default ProblemDetail;

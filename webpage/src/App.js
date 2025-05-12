@@ -27,7 +27,7 @@ function App() {
 
       try {
         // updated verify request - use GET and send token in query params
-        const verifyResponse = await fetch(`http://${SITE}/api/users/verify/`, {
+        const verifyResponse = await fetch(`https://${SITE}/api/users/verify/`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -42,7 +42,7 @@ function App() {
         }
 
         // fetch user data
-        const meResponse = await fetch(`http://${SITE}/api/users/me/`, {
+        const meResponse = await fetch(`https://${SITE}/api/users/me/`, {
           method: 'GET',
           headers: {
             'Authorization': `Token ${token}`,

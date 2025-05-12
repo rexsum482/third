@@ -55,7 +55,7 @@ const Reviews = () => {
       <h2 style={{ marginBottom: "1.5rem", textAlign: "center" }}>Customer Reviews</h2>
 
       {loading ? (
-        <div style={{ display: "flex", justifyContent: "center", marginTop: "2rem" }}>
+        <div style={{ display: "flex", justifyContent: "center", marginTop: "2rem", color: "white" }}>
           <div className="spinner" />
         </div>
       ) : reviews.length === 0 ? (
@@ -73,12 +73,12 @@ const Reviews = () => {
                 borderBottom: "1px solid #ddd"
               }}>
                 <div style={{ display: "flex", alignItems: "center", marginBottom: "0.5rem" }}>
-                  <strong style={{ marginRight: "1rem" }}>{r.name}</strong>
+                  <strong style={{ marginRight: "1rem", color: "#ffffff" }}>{r.name}</strong>
                   <span style={{ color: "#f5b301" }}>
                     {"⭐".repeat(r.rating)}
                   </span>
                 </div>
-                <p style={{ margin: 0 }}>{r.review}</p>
+                <p style={{ margin: 0, color: "#ffffff" }}>{r.review}</p>
               </li>
             ))}
           </ul>

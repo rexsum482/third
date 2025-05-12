@@ -1,6 +1,7 @@
 import React from "react";
 
-const InfoForm = ({ details, files, handleDetailChange, handleFileChange, addAnotherConcern }) => (
+const InfoForm = React.memo(function InfoForm({ details, files, handleDetailChange, handleFileChange, addAnotherConcern }) {
+  return (
   <div className="info-form">
     <textarea
       className="info-textarea"
@@ -18,6 +19,6 @@ const InfoForm = ({ details, files, handleDetailChange, handleFileChange, addAno
       Add Another Concern
     </button>
   </div>
-);
+)})
 
 export default InfoForm;

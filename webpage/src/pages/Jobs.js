@@ -21,7 +21,13 @@ const Jobs = () => {
   }, [selectedDate]);
 
   const fetchJobs = async () => {
-    const res = await fetch(`https://${SITE}/api/jobs/?date=${selectedDate.toISOString().split('T')[0]}`);
+    // Convert selectedDate to Central Time date string (YYYY-MM-DD)
+    const centralDate = new Date(
+      selectedDate.toLocaleString('en-US', { timeZone: 'America/Chicago' })
+    );
+    const formattedDate = centralDate.toISOString().split('T')[0];
+
+    const res = await fetch(`https://${SITE}/api/jobs/?date=${formattedDate}`);
     const data = await res.json();
     setJobs(data);
   };

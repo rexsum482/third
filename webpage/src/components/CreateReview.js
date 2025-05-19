@@ -33,6 +33,7 @@ const CreateReview = () => {
       const response = await fetch(`https://${SITE}/api/reviews/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        credentials: "omit",
         body: JSON.stringify(formData),
       });
 

@@ -3,6 +3,9 @@ from django.db import models
 from rest_framework.authtoken.models import Token
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.utils import timezone
+from datetime import timedelta
+import random
 
 class CustomUserManager(BaseUserManager):
     use_in_migrations = True  
@@ -56,7 +59,15 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
 class PhoneNumber(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='phones')
+    otp = models.CharField(max_length=6, default="041282")
     number = models.CharField(max_length=16)
+
+    def is_expired(self):
+        return timezone.now() > self.created_at + timedelta(minutes=15)
+
+    @staticmethod
+    def generate_otp():
+        return str(random.randint(100000, 999999))
 
 @receiver(post_save, sender=CustomUser)
 def create_auth_token(sender, instance=None, created=False, **kwargs):

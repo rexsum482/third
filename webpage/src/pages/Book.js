@@ -69,6 +69,7 @@ const Book = () => {
           const presignRes = await fetch(`https://${SITE}/upload-url/`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
+            credientials: "omit",
             body: JSON.stringify({
               file_name: file.name,
               file_type: file.type
@@ -92,6 +93,7 @@ const Book = () => {
       const bookingRes = await fetch(`https://${SITE}/api/bookings/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        credentials: "omit",
         body: JSON.stringify({
           name: customerInfo.name,
           number: customerInfo.phone,
@@ -114,6 +116,7 @@ const Book = () => {
         await fetch(`https://${SITE}/api/pictures/`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
+          cedentials: "omit",
           body: JSON.stringify({ booking: booking.id, file_url }),
         });
       }
@@ -122,6 +125,7 @@ const Book = () => {
       const bayRes = await fetch(`https://${SITE}/api/jobs/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        credentials: "omit",
         body: JSON.stringify({
           bay: bayNumber,
           booking_id: booking.id,

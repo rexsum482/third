@@ -134,8 +134,8 @@ def send_notification(sender, instance=None, created=False, **kwargs):
             email = EmailMultiAlternatives(
                 subject,
                 text_body,
-                '3rdstreetgarage@att.net',
-                ['arjeff482@gmail.com']
+                'dontreply@thirdstreetgarage.com',
+                ['arjeff482@gmail.com', '3rdstreetgarage@att.net']
             )
             email.attach_alternative(html_body, "text/html")
 

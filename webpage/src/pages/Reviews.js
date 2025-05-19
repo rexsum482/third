@@ -48,11 +48,9 @@ const Reviews = () => {
       maxWidth: "800px",
       margin: "2rem auto",
       padding: "2rem",
-      borderRadius: "1rem",
-      boxShadow: "0 0 10px rgba(0,0,0,0.1)"
     }}>
       <CreateReview />
-      <h2 style={{ marginBottom: "1.5rem", textAlign: "center" }}>Customer Reviews</h2>
+      <h2 style={{ marginBottom: "1.5rem", textAlign: "center", color: "#ffffff" }}>Customer Reviews</h2>
 
       {loading ? (
         <div style={{ display: "flex", justifyContent: "center", marginTop: "2rem", color: "white" }}>

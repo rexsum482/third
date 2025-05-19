@@ -1,3 +1,4 @@
+from django.views.generic import TemplateView
 from django.contrib import admin
 from django.urls import path, include, re_path
 from django.conf import settings
@@ -6,7 +7,7 @@ from rest_framework.routers import DefaultRouter
 from services.views import ServiceViewSet
 from users.views import UserViewSet, PhoneNumberViewSet
 from rest_framework.authtoken.views import ObtainAuthToken
-from .views import FrontendAppView, server_time, get_csrf_token, GetAuth
+from .views import FrontendAppView, server_time, get_csrf_token, GetAuth, send_otp_view, verify_otp_view
 from vehicles.views import VehicleViewSet
 from bookings.views import BayViewSet, BookingViewSet, generate_presigned_url, AvailableTimesView, get_next_available_time, JobViewSet
 from reviews.views import ReviewViewSet
@@ -35,7 +36,9 @@ urlpatterns = [
     path('available-times/', AvailableTimesView.as_view(), name='available_times'),
     path('get-next-available/', get_next_available_time, name='get_next_available_time'),
     path('get-csrf-token/', get_csrf_token, name='get_csrf_token'),
-
+    path('robots.txt', TemplateView.as_view(template_name='robots.txt', content_type='text/plain')),
+    path('send-otp/', send_otp_view),
+    path('verify-otp/', verify_otp_view),
 ]
 
 urlpatterns += re_path(r'^.*$', FrontendAppView.as_view(), name='index'),

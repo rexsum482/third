@@ -11,6 +11,71 @@ code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
+.blocked-block {
+  position: absolute;
+  height: 100%;
+  background-color: rgba(128, 128, 128, 0.5); /* semi-transparent gray */
+  border: 1px solid #555;
+  border-radius: 4px;
+}
+
+.timeline-header {
+  display: flex;
+  margin-left: 70px; /* aligns with the bay label */
+  position: relative;
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+
+.timeline-hour {
+  flex: 1;
+  text-align: center;
+  border-left: 1px dashed #ccc;
+  padding-left: 2px;
+  position: relative;
+}
+
+.timeline-container {
+  margin-top: 40px;
+  overflow-x: auto;
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.timeline-row {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 40px;
+  border: 1px solid #ccc;
+  background: #f9f9f9;
+}
+
+.timeline-label {
+  min-width: 60px;
+  text-align: right;
+  margin-right: 8px;
+}
+
+.timeline-grid {
+  position: relative;
+  flex: 1;
+  display: flex;
+  height: 100%;
+}
+
+.job-block {
+  position: absolute;
+  height: 100%;
+  background-color: rgba(255, 0, 0, 0.6);
+  border: 1px solid #900;
+  border-radius: 4px;
+}
+
 .home-container {
     height: 100vh;
     width: 100%;
@@ -786,7 +851,7 @@ code {
     border-radius: 8px;
     border: 1px solid #727272;
     background-color: #e0e0e0;
-    color: #fff;
+    color: #000;
     width: 100%;
     transition: border-color 0.3s ease;
   }

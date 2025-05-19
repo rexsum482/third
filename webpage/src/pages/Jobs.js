@@ -47,6 +47,7 @@ const Jobs = () => {
         'Content-Type': 'application/json',
         Authorization: `Token ${localStorage.getItem('token')}`,
       },
+      credentials: "omit",
       body: JSON.stringify({
         bay: selectedBay,
         start_time: startTime.toISOString(),
@@ -79,8 +80,64 @@ const Jobs = () => {
       console.error('Error deleting block');
     }
   };
+const getMinutesSince8AM = (dateStr) => {
+  const date = new Date(dateStr);
+  const eightAM = new Date(date);
+  eightAM.setHours(8, 0, 0, 0);
+  return (date - eightAM) / (1000 * 60); // convert to minutes
+};
+
+const MINUTES_IN_DAY = 600; // 10 hours
+const hours = Array.from({ length: 10 }, (_, i) => 8 + i); // 8 AM to 5 PM
 
   return (
+<>
+<div className="timeline-container admin-schedule">
+  <h2>Bay Usage Timeline</h2>
+<div style={{ display: 'flex', gap: '20px', marginBottom: '10px', marginLeft: '70px' }}>
+  <div><span style={{ display: 'inline-block', width: 15, height: 15, backgroundColor: 'rgba(255, 0, 0, 0.6)', border: '1px solid #900', marginRight: 5 }}></span>Booking</div>
+  <div><span style={{ display: 'inline-block', width: 15, height: 15, backgroundColor: 'rgba(128, 128, 128, 0.5)', border: '1px solid #555', marginRight: 5 }}></span>Blocked</div>
+</div>
+<div className="timeline-header">
+  {hours.map((hour, idx) => (
+    <div className="timeline-hour" key={idx}>
+      {hour < 12 ? `${hour} AM` : hour === 12 ? '12 PM' : `${hour - 12} PM`}
+    </div>
+  ))}
+</div>
+  <div className="timeline">
+    {bays.map((bay) => (
+      <div className="timeline-row" key={bay.id}>
+        <div className="timeline-label">Bay {bay.number}</div>
+        <div className="timeline-grid">
+{jobs
+  .filter((job) => job.bay === bay.id)
+  .map((job, idx) => {
+    const startMin = getMinutesSince8AM(job.start_time);
+    const endMin = getMinutesSince8AM(job.end_time);
+    const left = `${(startMin / MINUTES_IN_DAY) * 100}%`;
+    const width = `${((endMin - startMin) / MINUTES_IN_DAY) * 100}%`;
+
+    const isBooking = Boolean(job.booking);
+
+    return (
+      <div
+        key={idx}
+        className={isBooking ? "job-block" : "blocked-block"}
+        style={{ left, width }}
+        title={
+          isBooking
+            ? `Booking: ${new Date(job.start_time).toLocaleTimeString()} - ${new Date(job.end_time).toLocaleTimeString()}`
+            : `Blocked: ${new Date(job.start_time).toLocaleTimeString()} - ${new Date(job.end_time).toLocaleTimeString()}`
+        }
+      />
+    );
+  })}
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
     <div className="admin-schedule">
       <div className="admin-schedule__header">
         <div>
@@ -185,6 +242,7 @@ const Jobs = () => {
         </div>
       )}
     </div>
+</>
   );
 };
 

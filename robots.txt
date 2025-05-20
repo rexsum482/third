@@ -1,3 +1,14 @@
-# https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Disallow: /
+
+Allow: /$
+Allow: /home
+Allow: /signup
+Allow: /login
+Allow: /services
+Allow: /reviews
+Allow: /jobs
+Allow: /book
+Allow: /profile
+Allow: /static/
+Allow: /static/media/

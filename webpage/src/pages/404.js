@@ -18,11 +18,28 @@ const FourOfFour = () => {
 
   return (
     <center>
-    <div style={{ textAlign: "center", padding: "2rem", height:'100vh' }} className="my-auto">
-      <img src={Logo} alt="Logo" style={{ marginBottom: "2rem" }} className="w-[250px] md:w-[400px] lg:w-[800px] xl:w-[1200px] h-auto mx-auto" />
-      <h1 style={{ fontSize: "5rem", color: "#02610a" }}><b>404 - Page Not Found</b></h1>
-      <p style={{ fontStyle: "italic", marginTop: "1rem", color: "#c0c0c0", fontSize: '2rem' }}>{randomPhrase}</p>
-    </div>
+      <div style={{ textAlign: "center", padding: "2rem", height: '100vh' }} className="my-auto">
+        <img
+          src={Logo}
+          alt="Logo"
+          style={{
+            marginBottom: "2rem",
+            width: "100%",
+            maxWidth: "720px",
+            height: "auto"
+          }}
+        />
+        <h1 style={{ fontSize: "5rem", color: "#02610a" }}><b>404 - Page Not Found</b></h1>
+        <p style={{
+          fontStyle: "italic",
+          marginTop: "1rem",
+          color: "#c0c0c0",
+          fontSize: '2rem',
+          paddingBottom: "1rem"
+        }}>
+          {randomPhrase}
+        </p>
+      </div>
     </center>
   );
 };

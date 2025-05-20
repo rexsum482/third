@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Logo from '../assets/Logo2.png';
 import Sign from '../assets/thirdstreet.svg';
 import Avatar from '../assets/avatar.svg';
+import Question from '../assets/question.svg';
 
 const MenuBar = ({ isAuthenticated, isAdmin, active }) => {
     const navigate = useNavigate();
@@ -29,10 +30,16 @@ const MenuBar = ({ isAuthenticated, isAdmin, active }) => {
                 </a>
                 <div className="navbar-links">
                     <a href="tel:9723351153" className="navbar-phone">📞 (972) 335-1153</a>
+                    <a href="/contact"><img src={Question} height="32px" width="auto" /></a>
                     {isAuthenticated ? (
-                        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
-                        <span className="navbar-login" onClick={handleLogout}>Logout</span>
-                        <a href="/profile"><img src={Avatar} height='32px' width='auto' /></a>
+                        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
+                            <span className="navbar-login" onClick={handleLogout} style={{ paddingRight: '35px' }}>Logout</span>
+                            <a href="/profile" className="profile-avatar-link">
+                                <div className="avatar-container">
+                                    <img src={Avatar} className="avatar-img" alt="Profile" />
+                                    <span className="avatar-label">Profile</span>
+                                </div>
+                            </a>
                         </div>
                     ) : (
                         <a href="/login" className="navbar-login">Login</a>

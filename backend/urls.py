@@ -13,6 +13,7 @@ from bookings.views import BayViewSet, BookingViewSet, generate_presigned_url, A
 from reviews.views import ReviewViewSet
 from mailinglist.views import MailingListViewSet
 from shops.views import ShopViewSet
+from contact.views import contact_view
 
 router = DefaultRouter()
 router.register('users', UserViewSet, basename='user')
@@ -26,7 +27,6 @@ router.register('shops', ShopViewSet, basename='shop')
 router.register('phones', PhoneNumberViewSet, basename='phone')
 router.register('mailing-list', MailingListViewSet, basename='mailinglist')
 
-
 urlpatterns = [
     path('staff/', admin.site.urls),
     path('api/', include(router.urls)),
@@ -36,9 +36,11 @@ urlpatterns = [
     path('available-times/', AvailableTimesView.as_view(), name='available_times'),
     path('get-next-available/', get_next_available_time, name='get_next_available_time'),
     path('get-csrf-token/', get_csrf_token, name='get_csrf_token'),
+    path('routes.json',  TemplateView.as_view(template_name='routes.json', content_type='application/json')),
     path('robots.txt', TemplateView.as_view(template_name='robots.txt', content_type='text/plain')),
     path('send-otp/', send_otp_view),
     path('verify-otp/', verify_otp_view),
+    path('server/contact/', contact_view, name='contact'),
 ]
 
 urlpatterns += re_path(r'^.*$', FrontendAppView.as_view(), name='index'),

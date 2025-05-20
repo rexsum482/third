@@ -11,6 +11,80 @@ code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
+.avatar-container {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+}
+
+.avatar-img {
+  height: 32px;
+  width: auto;
+  display: block;
+}
+
+.avatar-label {
+  position: absolute;
+  bottom: -4; /* or -4px for a slight overlap */
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.8rem;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.6); /* optional for contrast */
+  padding: 1px 4px;
+  border-radius: 3px;
+}
+
+.contact-form {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-heading {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.form-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.form-button {
+  padding: 0.75rem 1.5rem;
+  background-color: #2563eb; /* blue-600 */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.form-button:hover {
+  background-color: #1e40af; /* darker blue */
+}
+
+.form-status {
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  color: #333;
+}
+
 .blocked-block {
   position: absolute;
   height: 100%;

@@ -12,6 +12,7 @@ import Jobs from "./pages/Jobs";
 import Book from "./pages/Book";
 import FourOfFour from "./pages/404";
 import Profile from "./pages/Profile";
+import ContactForm from "./pages/Contact";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(null);
@@ -117,6 +118,7 @@ function AppContent({ isAuthenticated, isAdmin }) {
           <Route path="/jobs" element={isAdmin ? <Jobs /> : <Home />} />
           <Route path="/book" element={<Book />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/contact" element={<ContactForm />} />
           <Route path="*" element={<FourOfFour />} />
         </Routes>
       </div>

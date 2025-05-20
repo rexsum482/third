@@ -37,7 +37,7 @@ code {
 
 .contact-form {
   max-width: 500px;
-  margin: 0 auto;
+  margin: auto auto;
   padding: 1.5rem;
   background-color: #fff;
   border-radius: 8px;

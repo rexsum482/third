@@ -40,6 +40,7 @@ const ContactForm = () => {
   };
 
   return (
+    <div style={{ minHeight: '90vh' }}>
     <form onSubmit={handleSubmit} className="contact-form">
       <h2 className="form-heading">Contact Us</h2>
 
@@ -78,6 +79,7 @@ const ContactForm = () => {
 
       {status && <p className="form-status">{status}</p>}
     </form>
+   </div>
   );
 };
 export default ContactForm;

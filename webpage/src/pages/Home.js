@@ -2,6 +2,12 @@ import React, { useState, useEffect } from "react";
 import Logo from "../assets/Logo2.png";
 import { SITE } from "../data/constants";
 import Transmission from "../assets/transmission.png";
+import Alldata from "../assets/ALLDATA.png";
+import BG from "../assets/BG.png";
+import Carfax from "../assets/CARFAX.jpg";
+import PartsTech from "../assets/PARTSTECH.png";
+import RepairLink from "../assets/REPAIRLINK.svg";
+import TekMetric from "../assets/TEKMETRIC.png";
 
 export default function Home() {
   const [serverTime, setServerTime] = useState(null);
@@ -138,6 +144,35 @@ export default function Home() {
       <a href="/book" className="floating-button">
         Schedule Service
       </a>
+      <footer
+        className="partners-footer"
+        style={{
+          marginTop: "40px",
+          padding: "40px 20px",
+          backgroundColor: "rgba(255,255,255,0.9)",
+          borderTop: "1px solid #ddd",
+          textAlign: "center"
+        }}
+      >
+        <div
+          className="partner-logos"
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: "rgba(255,255,255,0.9)",
+            gap: "30px"
+          }}
+        >
+          <img src={Alldata} alt="Alldata" style={{ maxHeight: "80px", maxWidth: "150px" }} />
+          <img src={BG} alt="BG Products" style={{ maxHeight: "80px", maxWidth: "150px" }} />
+          <img src={Carfax} alt="Carfax" style={{ maxHeight: "80px", maxWidth: "150px" }} />
+          <img src={PartsTech} alt="PartsTech" style={{ maxHeight: "80px", maxWidth: "150px" }} />
+          <img src={RepairLink} alt="RepairLink" style={{ maxHeight: "80px", maxWidth: "150px" }} />
+          <img src={TekMetric} alt="TekMetric" style={{ maxHeight: "80px", maxWidth: "150px" }} />
+        </div>
+      </footer>
     </>
   );
 }
